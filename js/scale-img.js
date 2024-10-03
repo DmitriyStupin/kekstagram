@@ -10,7 +10,7 @@ const SCALE_STEP = 25;
 
 scaleInput.value = `${DEFAULT_SCALE}%`;
 
-const scaleImage = (value = DEFAULT_SCALE) => {
+const scaleImage = (value = `${DEFAULT_SCALE}%`) => {
   image.style.transform = `scale(${value / 100})`;
   scaleInput.value = `${value}%`;
 };

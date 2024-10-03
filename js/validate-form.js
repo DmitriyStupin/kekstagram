@@ -1,3 +1,7 @@
+import { showAlert } from './util.js';
+import { sendData } from './api.js';
+import { resetScale } from './scale-img.js';
+
 const form = document.querySelector('.img-upload__form');
 const hashtagField = document.querySelector('.text__hashtags');
 
@@ -33,14 +37,6 @@ const isValidTag = (tag) => startWithHashtag(tag) && hasValidSymbols(tag) && has
 
 const hasValidCount = (tags) => tags.length <= MAX_HASHTAG_COUNT;
 
-// const isUniqueTag = (tags) => {
-//   let lowerCaseTags = [];
-//   for (let i = 0; i <= tags.length; i++) {
-//     lowerCaseTags += tags[i].toLowerCase();
-//   }
-//   return lowerCaseTags.length === new Set(lowerCaseTags).size;
-// };
-
 const isUniqueTags = (tags) => {
   const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
   return lowerCaseTags.length === new Set(lowerCaseTags).size;
@@ -51,9 +47,20 @@ const validateTags = (value) => {
   return hasValidCount(tags) && isUniqueTags(tags) && tags.every(isValidTag);
 };
 
-const onFormSubmit = (evt) => {
-  evt.preventDefault();
-  pristine.validate();
+const onFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+
+    if (isValid) {
+      sendData(
+        () => onSuccess(),
+        () => showAlert('Не удалось отправить форму. Попробуйте ещё раз'),
+        new FormData(evt.target),
+      );
+    }
+  });
 };
 
 const isTextFieldFocused = () =>
@@ -74,12 +81,13 @@ const showModal = () => {
   document.addEventListener('keydown', onEscKeyDown);
 };
 
-function hideModal () {
+function hideModal() {
   form.reset();
   pristine.reset();
   uploadOverlay.classList.add('hidden');
   body.classList.remove('modal-open');
   document.removeEventListener('keydown', onEscKeyDown);
+  resetScale();
 }
 
 uploadFile.addEventListener('change', () => {
@@ -90,9 +98,10 @@ uploadCancel.addEventListener('click', () => {
   hideModal();
 });
 
-form.addEventListener('submit', onFormSubmit);
 pristine.addValidator(
   hashtagField,
   validateTags,
   'Неправильно заполнены хэштэги'
 );
+
+export { onFormSubmit, showModal, hideModal };
