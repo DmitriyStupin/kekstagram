@@ -5,6 +5,7 @@ import { resetEffects } from './effect-img.js';
 import { resetScale } from './scale-img.js';
 
 const form = document.querySelector('.img-upload__form');
+const imgFilter = document.querySelector('.img-filters');
 
 const getData = () => {
   fetch('https://25.javascript.htmlacademy.pro/kekstagram/data')
@@ -13,6 +14,7 @@ const getData = () => {
         response.json()
           .then((pictures) => {
             renderPictures(pictures);
+            imgFilter.classList.remove('img-filters--inactive');
           });
       } else {
         showAlert('Не удалось загрузить фотографии! Попробуйте ещё раз');

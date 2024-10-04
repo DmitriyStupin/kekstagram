@@ -1,4 +1,7 @@
+/* eslint-disable prefer-const */
 import { showBigPicture } from './fullScreen.js';
+
+// const filterDiscussed = document.querySelector('#filter-discussed');
 
 const pictureList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
@@ -21,13 +24,27 @@ const createPicture = (data) => {
   return picture;
 };
 
+// const pictureRank = (data) => {
+//   const { comments } = data;
+
+//   let rank = comments.length;
+
+//   return rank;
+// };
+
+
 const renderPictures = (pictures) => {
   const fragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
-    const pictureElement = createPicture(picture);
-    fragment.append(pictureElement);
-  });
+  pictures
+    .forEach((picture) => {
+      const pictureElement = createPicture(picture);
+      fragment.append(pictureElement);
+    });
   pictureList.append(fragment);
 };
+
+// filterDiscussed.addEventListener('click', () => {
+//   filterDiscussed.classList.add('img-filters__button--active');
+// });
 
 export{ renderPictures };
