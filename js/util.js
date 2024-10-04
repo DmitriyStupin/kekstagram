@@ -1,3 +1,5 @@
+import { renderPictures } from './thumbnail.js';
+
 const ALERT_SHOW_TIME = 2000;
 
 const getRandomNumber = (a, b) => {
@@ -57,4 +59,9 @@ const showSuccess = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomArrayElement, getRandomNumber, checkStringLength, isEscapeKey, showAlert, showSuccess};
+const getRandomPicture = (pictures) => {
+  const randomPictures = _.sampleSize(pictures, 10);
+  
+};
+
+export {getRandomArrayElement, getRandomNumber, checkStringLength, isEscapeKey, showAlert, showSuccess, getRandomPicture};

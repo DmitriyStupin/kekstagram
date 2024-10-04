@@ -6,3 +6,4 @@ import { getData } from './api.js';
 getData((pictures) => {
   renderPictures(pictures);
 });
+
