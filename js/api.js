@@ -3,6 +3,7 @@ import { showAlert, showSuccess } from './util.js';
 import { renderPictures } from './thumbnail.js';
 import { resetEffects } from './effect-img.js';
 import { resetScale } from './scale-img.js';
+import { getRandomPicture } from './util.js';
 
 const form = document.querySelector('.img-upload__form');
 const imgFilter = document.querySelector('.img-filters');
@@ -14,6 +15,7 @@ const getData = () => {
         response.json()
           .then((pictures) => {
             renderPictures(pictures);
+            getRandomPicture(pictures);
             imgFilter.classList.remove('img-filters--inactive');
           });
       } else {

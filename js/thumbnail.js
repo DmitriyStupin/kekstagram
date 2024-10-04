@@ -1,7 +1,18 @@
 /* eslint-disable prefer-const */
 import { showBigPicture } from './fullScreen.js';
+import { getRandomPicture } from './util.js';
 
-// const filterDiscussed = document.querySelector('#filter-discussed');
+const filterButtons = document.querySelectorAll('.img-filters__button');
+const filterRandom = document.querySelector('#filter-random');
+
+for (let i = 0; i < filterButtons.length; i++) {
+  filterButtons[i].addEventListener('click', function() {
+    for (let j = 0; j < filterButtons.length; j++) {
+      filterButtons[j].classList.remove('img-filters__button--active');
+    }
+    this.classList.add('img-filters__button--active');
+  });
+}
 
 const pictureList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture')
@@ -46,5 +57,9 @@ const renderPictures = (pictures) => {
 // filterDiscussed.addEventListener('click', () => {
 //   filterDiscussed.classList.add('img-filters__button--active');
 // });
+
+filterRandom.addEventListener('click', (pictures) => {
+  getRandomPicture(pictures);
+});
 
 export{ renderPictures };
