@@ -1,4 +1,4 @@
-import { renderPictures } from './thumbnail.js';
+// import { renderPictures } from './thumbnail.js';
 
 const ALERT_SHOW_TIME = 2000;
 
@@ -60,8 +60,8 @@ const showSuccess = (message) => {
 };
 
 const getRandomPicture = (pictures) => {
+  // eslint-disable-next-line no-unused-vars
   const randomPictures = _.sampleSize(pictures, 10);
-  
 };
 
 export {getRandomArrayElement, getRandomNumber, checkStringLength, isEscapeKey, showAlert, showSuccess, getRandomPicture};
