@@ -1,6 +1,5 @@
-// import { renderPictures } from './thumbnail.js';
+const ALERT_SHOW_TIME = 5000;
 
-const ALERT_SHOW_TIME = 2000;
 
 const getRandomNumber = (a, b) => {
   const lower = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
@@ -59,9 +58,12 @@ const showSuccess = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const getRandomPicture = (pictures) => {
-  // eslint-disable-next-line no-unused-vars
-  const randomPictures = _.sampleSize(pictures, 10);
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
 };
 
-export {getRandomArrayElement, getRandomNumber, checkStringLength, isEscapeKey, showAlert, showSuccess, getRandomPicture};
+export {getRandomArrayElement, getRandomNumber, checkStringLength, isEscapeKey, showAlert, showSuccess, debounce};
