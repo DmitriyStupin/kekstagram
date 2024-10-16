@@ -4,6 +4,7 @@ import { showAlert } from './util.js';
 import { setOnFormSubmit, hideModal } from './validate-form.js';
 import { showSuccessMessage, showErrorMessage } from './message.js';
 import { setOnFilterClick, turnFilterOn, filterPictures } from './filter.js';
+import './avatar.js';
 
 const onGetDataSuccess = (data) => {
   turnFilterOn(data);
