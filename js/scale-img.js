@@ -8,12 +8,13 @@ const DEFAULT_SCALE = 100;
 const MIN_SCALE = 25;
 const SCALE_STEP = 25;
 
-scaleInput.value = `${DEFAULT_SCALE}%`;
 
 const scaleImage = (value = `${DEFAULT_SCALE}%`) => {
   image.style.transform = `scale(${value / 100})`;
   scaleInput.value = `${value}%`;
 };
+
+scaleImage(DEFAULT_SCALE);
 
 const onSmallerButtonCLick = () => {
   const currentValue = parseInt(scaleInput.value, 10);

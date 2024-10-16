@@ -1,3 +1,5 @@
+import { resetScale } from './scale-img.js';
+
 const bigPicture = document.querySelector('.big-picture');
 const commentCount = document.querySelector('.social__comment-count');
 const commentList = document.querySelector('.social__comments');
@@ -79,6 +81,9 @@ const showBigPicture = (data) => {
 
   comments = data.comments;
   renderBigPicture(data);
+
+  resetScale();
+
   renderComments(data.comments);
   if (comments.length > 0) {
     renderComments();
